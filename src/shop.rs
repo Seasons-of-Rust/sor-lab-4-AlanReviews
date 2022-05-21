@@ -26,7 +26,12 @@ impl Shop {
     /// this store wins, FightResult::Loss if this store loses, and a
     /// FightResult::Tie if both stores win the same number of battles.
     pub fn fight_store(&self, other: &Shop) -> FightResult {
-        todo!()
+        for card1 in self.cards.iter() {
+            for card2 in other.cards.iter() {
+                fight(card1, card2);
+                print_fight(card1, card2);
+            }
+        }
     }
 }
 
