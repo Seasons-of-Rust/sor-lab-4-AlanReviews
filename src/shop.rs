@@ -26,11 +26,37 @@ impl Shop {
     /// this store wins, FightResult::Loss if this store loses, and a
     /// FightResult::Tie if both stores win the same number of battles.
     pub fn fight_store(&self, other: &Shop) -> FightResult {
+        let mut self_wins = 0;
+        let mut other_wins = 0;
         for card1 in self.cards.iter() {
             for card2 in other.cards.iter() {
-                fight(card1, card2);
-                print_fight(card1, card2);
+                // card1.print_fight(card2);
+                match card1.fight(card2) {
+                    FightResult::Win => self_wins += 1,
+                    FightResult::Loss => other_wins += 1,
+                    FightResult::Tie => {
+                        other_wins += 1;
+                        self_wins += 1; 
+                    },
+                    _ => println!("Nothing happens")
+                }
             }
+        }
+        if self_wins > other_wins {
+            println!("Returning win enum");
+            FightResult::Win
+        }
+        else if other_wins > self_wins {
+            println!("Returning loss enum");
+            FightResult::Loss
+        }
+        else if other_wins == self_wins {
+            println!("Returning tie enum");
+            FightResult::Tie
+        }
+        else {
+            println!("Returning draw enum");
+            FightResult::Draw
         }
     }
 }
