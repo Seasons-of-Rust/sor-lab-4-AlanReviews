@@ -36,25 +36,22 @@ impl Shop {
                     FightResult::Loss => other_wins += 1,
                     FightResult::Tie => {
                         other_wins += 1;
-                        self_wins += 1; 
-                    },
-                    _ => println!("Nothing happens")
+                        self_wins += 1;
+                    }
+                    _ => println!("Nothing happens"),
                 }
             }
         }
         if self_wins > other_wins {
             println!("Returning win enum");
             FightResult::Win
-        }
-        else if other_wins > self_wins {
+        } else if other_wins > self_wins {
             println!("Returning loss enum");
             FightResult::Loss
-        }
-        else if other_wins == self_wins {
+        } else if other_wins == self_wins {
             println!("Returning tie enum");
             FightResult::Tie
-        }
-        else {
+        } else {
             println!("Returning draw enum");
             FightResult::Draw
         }
