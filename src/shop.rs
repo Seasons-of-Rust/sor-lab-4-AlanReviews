@@ -42,18 +42,10 @@ impl Shop {
                 }
             }
         }
-        if self_wins > other_wins {
-            println!("Returning win enum");
-            FightResult::Win
-        } else if other_wins > self_wins {
-            println!("Returning loss enum");
-            FightResult::Loss
-        } else if other_wins == self_wins {
-            println!("Returning tie enum");
-            FightResult::Tie
-        } else {
-            println!("Returning draw enum");
-            FightResult::Draw
+        match self_wins.cmp(&other_wins) {
+            std::cmp::Ordering::Greater => FightResult::Win,
+            std::cmp::Ordering::Less => FightResult::Loss,
+            std::cmp::Ordering::Equal => FightResult::Tie,
         }
     }
 }
